@@ -18,6 +18,17 @@ There are 4 functions in this package:
 
 -   `total_cumulative_vaccine_completion` Query total cumulative vaccine completion with ability to specify province and date range of returned data.
 
+## Installation
+
+```bash
+$ pip install CanadaCovidMetrics
+```
+
+## Usage
+
+- TODO
+
+
 ## Python ecosystem
 
 There are several packages for easy access to COVID-19 key metrics or data using different APIs, examples include
@@ -35,3 +46,11 @@ To our knowledge, there is no similar package using [OpenCovid API](https://open
 -   Luke Collins (@LukeAC)
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/CanadaCovidMetrics/blob/main/CONTRIBUTING.md).
+
+## License
+
+`CanadaCovidMetrics` was created by the Contributors. It is licensed under the terms of the MIT license.
+
+## Credits
+
+`CanadaCovidMetrics` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
