@@ -29,7 +29,9 @@ To our knowledge, there is no similar package using [OpenCovid API](https://open
 
 ## Contributors
 
--   Adam Morphy
--   Brandon Lam
--   Lakshmi Santosha Valli Akella
--   Luke Collins
+-   Adam Morphy (@adammorphy)
+-   Brandon Lam (@ming0701)
+-   Lakshmi Santosha Valli Akella (@valli180)
+-   Luke Collins (@lcolli01)
+
+We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/CanadaCovidMetrics/blob/main/CONTRIBUTING.md).
