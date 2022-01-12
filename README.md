@@ -28,7 +28,6 @@ $ pip install CanadaCovidMetrics
 
 - TODO
 
-
 ## Python ecosystem
 
 There are several packages for easy access to COVID-19 key metrics or data using different APIs, examples include
