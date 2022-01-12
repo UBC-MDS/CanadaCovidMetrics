@@ -10,13 +10,13 @@ This package allows users to obtain key metrics on COVID-19 situation in Canada 
 
 There are 4 functions in this package:
 
--   `total_cumulative_cases` Return cumulative COVID cases by province or at national level. User can specific the time period with start and end dates.
+-   `total_cumulative_cases` Query total cumulative cases with ability to specify province and date range of returned data.
 
--   `total_cumulative_deaths` Return cumulative deaths by province or at national level. User can specific the time period with start and end dates.
+-   `total_cumulative_deaths` Query total cumulative deaths with ability to specify province and date range of returned data.
 
--   `total_cumulative_recovered` Return cumulative recovered cases by province or at national level. User can specific the time period with start and end dates.
+-   `total_cumulative_recovered_cases` Query total cumulative recovered cases with ability to specify province and date range of returned data.
 
--   `total_cumulative_vaccine` Return cumulative vaccine completion by province or at national level. User can specific the time period with start and end dates.
+-   `total_cumulative_vaccine_completion` Query total cumulative vaccine completion with ability to specify province and date range of returned data.
 
 ## Python ecosystem
 
@@ -32,6 +32,6 @@ To our knowledge, there is no similar package using [OpenCovid API](https://open
 -   Adam Morphy (@adammorphy)
 -   Brandon Lam (@ming0701)
 -   Lakshmi Santosha Valli Akella (@valli180)
--   Luke Collins (@lcolli01)
+-   Luke Collins (@LukeAC)
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/CanadaCovidMetrics/blob/main/CONTRIBUTING.md).
