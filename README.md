@@ -1,4 +1,4 @@
-# CanadaCovidMetrics
+# canadacovidmetrics
 
 This is a Python package that provides key metrics regarding COVID-19 situation in Canada across provinces using the [OpenCovid API](https://opencovid.ca/api/).
 
@@ -21,7 +21,7 @@ There are 4 functions in this package:
 ## Installation
 
 ```bash
-$ pip install CanadaCovidMetrics
+$ pip install canadacovidmetrics
 ```
 
 ## Usage
@@ -44,12 +44,12 @@ To our knowledge, there is no similar package using [OpenCovid API](https://open
 -   Lakshmi Santosha Valli Akella (@valli180)
 -   Luke Collins (@LukeAC)
 
-We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/CanadaCovidMetrics/blob/main/CONTRIBUTING.md).
+We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/canadacovidmetrics/blob/main/CONTRIBUTING.md).
 
 ## License
 
-`CanadaCovidMetrics` was created by the Contributors. It is licensed under the terms of the MIT license.
+`canadacovidmetrics` was created by the Contributors. It is licensed under the terms of the MIT license.
 
 ## Credits
 
-`CanadaCovidMetrics` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`canadacovidmetrics` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
