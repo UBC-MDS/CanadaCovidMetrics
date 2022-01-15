@@ -1,7 +1,11 @@
 # Contributing
 
+This outlines how to propose a change to the Canada Covid Metrics Project.
+
+### General Contribution Guidelines
+
 Contributions are welcome, and they are greatly appreciated! Every little bit
-helps, and credit will always be given.
+helps, and credit will always be given. If you notice a bug, or have a feature request, please open up an issue.
 
 ## Types of Contributions
 
@@ -70,4 +74,4 @@ Before you submit a pull request, check that it meets these guidelines:
 ## Code of Conduct
 
 Please note that the `CanadaCovidMetrics` project is released with a 
-Code of Conduct. By contributing to this project you agree to abide by its terms.
+[Contributor Code of Conduct](CONDUCT.md). By contributing to this project you agree to abide by its terms.
