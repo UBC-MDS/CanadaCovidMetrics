@@ -4,9 +4,57 @@ import requests
 import pandas as pd
 
 today = '{}'.format(dt.date.today())
-format_ymd = "%Y-%m-%d"
-format_dmy = "%d-%m-%Y"
-format_prov = ['canada', 'prov', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NL', 'NB', 'NS', 'PE', 'NT', 'YT', 'NU', 'RP']
+
+def date_format_check(datestr):
+    """Check date format is compatible with API call
+
+    Parameters
+    ----------
+    datestr : str
+        Date string to be checked
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> date_format_check('2021-03-30')
+    """
+    format_ymd = "%Y-%m-%d"
+    format_dmy = "%d-%m-%Y"
+    try:
+        dt.datetime.strptime(datestr, format_ymd)
+    except:
+        try:
+            dt.datetime.strptime(datestr, format_dmy)
+        except:
+            raise(ValueError("Incorrect date format {} : date format should be either YYYY-MM-DD or DD-MM-YYYY".format(datestr)))
+    
+    return
+
+
+def loc_format_check(locstr):
+    """Check province/location format is compatible with API call
+    
+    Parameters
+    ----------
+    locstr : str
+        Location string to be checked
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> loc_format_check('2021-03-30')
+    """
+    format_loc = ['canada', 'prov', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NL', 'NB', 'NS', 'PE', 'NT', 'YT', 'NU', 'RP']
+    if locstr not in format_loc:
+        raise(ValueError("Value passed for loc argument is not recognized. Must be one of: 'prov', 'canada', or a two-letter capitalized province code"))
+
+    return
 
 def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative cases with ability to specify \
@@ -97,37 +145,15 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
     --------
     >>> total_cumulative_recovered_cases(loc='BC')
     """  
-    if loc not in format_prov:
-        raise(ValueError("Value passed for loc argument is not recognized. Must be one of: 'prov', 'canada', or a two-letter capitalized province code"))
+    
+    loc_format_check(loc)  # check location is valid
 
     if date is not None:
-        try:
-            dt.datetime.strptime(date, format_ymd)
-        except:
-            try:
-                dt.datetime.strptime(date, format_dmy)
-            except:
-                raise(ValueError("Incorrect date format {} : date format should be either YYYY-MM-DD or DD-MM-YYYY".format(date)))
-        
-        url = 'https://api.opencovid.ca/timeseries?stat=recovered&loc={}&date={}'.format(loc, date)
-    
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=recovered&loc={}&date={}'.format(loc, date) 
     else:
-        try:
-            dt.datetime.strptime(before, format_ymd)
-        except:
-            try:
-                dt.datetime.strptime(before, format_dmy)
-            except:
-                raise(ValueError("Incorrect before-date format {} : date format should be either YYYY-MM-DD or DD-MM-YYYY".format(before)))
-        
-        try:
-            dt.datetime.strptime(after, format_ymd)
-        except:
-            try:
-                dt.datetime.strptime(after, format_dmy)
-            except:
-                raise(ValueError("Incorrect after-date format {} : date format should be either YYYY-MM-DD or DD-MM-YYYY".format(after)))
-
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
         url = 'https://api.opencovid.ca/timeseries?stat=recovered&loc={}&after={}&before={}'.format(loc, after, before)
     
     r = requests.get(url = url)
@@ -166,5 +192,3 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2020-01-01
     """
 
     return
-
-print(total_cumulative_recovered_cases())
