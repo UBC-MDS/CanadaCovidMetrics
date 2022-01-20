@@ -1,21 +1,60 @@
-from datetime import date
+import datetime as dt
+from multiprocessing.sharedctypes import Value
 import requests
 import pandas as pd
 
-"""
-Sample format of a request 
+today = '{}'.format(dt.date.today())
 
-url = 'https://api.opencovid.ca/timeseries?stat=cases&loc=prov&date=01-09-2020'
-r = requests.get(url = url)
-json_body = r.json()
+def date_format_check(datestr):
+    """Check date format is compatible with API call
 
-convert to pd.DataFrame (optional?)
+    Parameters
+    ----------
+    datestr : str
+        Date string to be checked
 
-    - If we do this, we'll have to update the docstrings
-    to specify that the functions return a pandas dataframe
-"""
+    Returns
+    -------
+    None
 
-today = '{}'.format(date.today())
+    Examples
+    --------
+    >>> date_format_check('2021-03-30')
+    """
+    format_ymd = "%Y-%m-%d"
+    format_dmy = "%d-%m-%Y"
+    try:
+        dt.datetime.strptime(datestr, format_ymd)
+    except:
+        try:
+            dt.datetime.strptime(datestr, format_dmy)
+        except:
+            raise(ValueError("Incorrect date format {} : date format should be either YYYY-MM-DD or DD-MM-YYYY".format(datestr)))
+    
+    return
+
+
+def loc_format_check(locstr):
+    """Check province/location format is compatible with API call
+    
+    Parameters
+    ----------
+    locstr : str
+        Location string to be checked
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> loc_format_check('2021-03-30')
+    """
+    format_loc = ['canada', 'prov', 'BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NL', 'NB', 'NS', 'PE', 'NT', 'YT', 'NU', 'RP']
+    if locstr not in format_loc:
+        raise(ValueError("Value passed for loc argument is not recognized. Must be one of: 'prov', 'canada', or a two-letter capitalized province code"))
+
+    return
 
 def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative cases with ability to specify \
@@ -99,15 +138,29 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
 
     Returns
     -------
-    dict
-        JSON response from queried api.
+    df
+        Pandas dataframe containing content of API response.
 
     Examples
     --------
     >>> total_cumulative_recovered_cases(loc='BC')
-    """
+    """  
+    
+    loc_format_check(loc)  # check location is valid
 
-    return
+    if date is not None:
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=recovered&loc={}&date={}'.format(loc, date) 
+    else:
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=recovered&loc={}&after={}&before={}'.format(loc, after, before)
+    
+    r = requests.get(url = url)
+    json_body = r.json()['recovered']
+    df = pd.DataFrame.from_dict(json_body)
+
+    return df
 
 
 def total_cumulative_vaccine_completion(loc='prov', date=None, after='2020-01-01', before=today):
@@ -139,4 +192,3 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2020-01-01
     """
 
     return
-
