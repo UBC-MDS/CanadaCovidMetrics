@@ -45,3 +45,10 @@ def test_total_cumulative_vaccine_completion():
     assert df['cvaccine'].sum() == 11250, 'Incorrect cvaccine returned when date is specified' 
     assert df['date_vaccine_completed'][0] == '01-05-2021', 'Incorrect date_vaccine_completed returned when data is specified' 
     assert df['province'][0] == 'Quebec', 'Incorrect province returned when date is specified' 
+
+    # Test correct data is returned when date is not specified
+    df = total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30')
+    assert df['cumulative_cvaccine'].sum() == 151110816, 'Incorrect cumulative_cvaccine returned when date is not specified' 
+    assert df['cvaccine'].sum() == 4773367, 'Incorrect cvaccine returned when date is not specified' 
+    assert df['date_vaccine_completed'][0] == '12-01-2021', 'Incorrect date_vaccine_completed returned when date is not specified' 
+    assert df['province'][0] == 'Quebec', 'Incorrect province returned when date is not specified' 
