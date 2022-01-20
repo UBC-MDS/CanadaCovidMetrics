@@ -90,7 +90,6 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
 def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative deaths with ability to specify \
         location and date range of returned data.
-
     Parameters
     ----------
     loc : str
@@ -104,18 +103,30 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-
     Returns
     -------
-    dict
-        JSON response from queried api.
-
+    df
+        Pandas dataframe containing content of API response.
     Examples
     --------
     >>> total_cumulative_deaths(loc='BC')
-    """
+    """  
 
-    return
+    loc_format_check(loc)  # check location is valid
+
+    if date is not None:
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=mortality&loc={}&date={}'.format(loc, date) 
+    else:
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=mortality&loc={}&after={}&before={}'.format(loc, after, before)
+    
+    r = requests.get(url = url)
+    json_body = r.json()['mortality']
+    df = pd.DataFrame.from_dict(json_body)
+
+    return df
 
 
 def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', before=today):
