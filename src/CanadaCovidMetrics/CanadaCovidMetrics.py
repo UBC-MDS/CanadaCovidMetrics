@@ -204,4 +204,18 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     >>> total_cumulative_vaccine_completion(loc='BC')
     """
 
-    return
+    loc_format_check(loc)  # check location is valid
+
+    if date is not None:
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cvaccine&loc={}&date={}'.format(loc, date) 
+    else:
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cvaccine&loc={}&after={}&before={}'.format(loc, after, before)
+    
+    r = requests.get(url = url)
+    json_body = r.json()['cvaccine']
+    df = pd.DataFrame.from_dict(json_body)
+
+    return df
