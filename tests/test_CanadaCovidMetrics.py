@@ -1,8 +1,4 @@
-from CanadaCovidMetrics import CanadaCovidMetrics
-import datetime as dt
-from multiprocessing.sharedctypes import Value
-import requests
-import pandas as pd
+from CanadaCovidMetrics import CanadaCovidMetrics as ccm
 
 def test_total_cumulative_deaths():
     """Test total_cumulative_deaths"""
@@ -14,9 +10,9 @@ def test_total_cumulative_deaths():
     assert df['death'].sum() == 31
     
     # Test correct data is returned when date is not specified
-    df = total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-07-30')
+    df = ccm.total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-07-30')
     assert df['deaths'].sum() == 194
 
     # Test correct data size is returned
-    df = total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-10-30')
+    df = ccm.total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-10-30')
     assert df.shape == (237, 4)
