@@ -174,7 +174,7 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
     return df
 
 
-def total_cumulative_vaccine_completion(loc='prov', date=None, after='2020-01-01', before=today):
+def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01', before=today):
     """Query total cumulative vaccine completion with ability \
         to specify location and date range of returned data.
 
@@ -189,8 +189,10 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2020-01-01
         Superceeds 'after' and 'before' parameters.
     after : str
         Return data on and after the specified date YYYY-MM-DD.
+        Default is 2021-01-01.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
+        Default is the date of query.
 
     Returns
     -------
