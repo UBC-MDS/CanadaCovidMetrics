@@ -38,3 +38,10 @@ def test_total_cumulative_vaccine_completion():
         'date_vaccine_completed',
         'province'
         ]).all(), 'Default returned dataframe has incorrect column names'
+
+    # Test correct data is returned when date is specified
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')  
+    assert df['cumulative_cvaccine'].sum() == 97108, 'Incorrect cumulative_cvaccine returned when date is specified' 
+    assert df['cvaccine'].sum() == 11250, 'Incorrect cvaccine returned when date is specified' 
+    assert df['date_vaccine_completed'][0] == '01-05-2021', 'Incorrect date_vaccine_completed returned when data is specified' 
+    assert df['province'][0] == 'Quebec', 'Incorrect province returned when date is specified' 
