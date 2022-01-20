@@ -83,7 +83,8 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
     --------
     >>> total_cumulative_cases(loc='BC')
     """
-     loc_format_check(loc)  # check location is valid
+     
+    loc_format_check(loc)  # check location is valid
 
     if date is not None:
         date_format_check(date)  # check date is valid
