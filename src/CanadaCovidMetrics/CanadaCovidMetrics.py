@@ -83,9 +83,21 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
     --------
     >>> total_cumulative_cases(loc='BC')
     """
+     loc_format_check(loc)  # check location is valid
 
-    return
+    if date is not None:
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cases&loc={}&date={}'.format(loc, date) 
+    else:
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cases&loc={}&after={}&before={}'.format(loc, after, before)
+    
+    r = requests.get(url = url)
+    json_body = r.json()['cases']
+    df = pd.DataFrame.from_dict(json_body)
 
+    return df
 
 def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative deaths with ability to specify \
