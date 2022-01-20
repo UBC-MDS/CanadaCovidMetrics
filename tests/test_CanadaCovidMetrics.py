@@ -20,3 +20,21 @@ def test_total_cumulative_deaths():
     # Test correct data size is returned
     df = total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-10-30')
     assert df.shape == (237, 4)
+
+
+def test_total_cumulative_vaccine_completion():
+    """Test total_cumulative_vaccine_completion"""
+
+    # Test defaults return a dataframe object
+    assert isinstance(ccm.total_cumulative_vaccine_completion(), pd.DataFrame), 'Pandas DataFrame Not Returned'
+
+    # Test default call returns non-empty dataframe object
+    assert ccm.total_cumulative_vaccine_completion().empty == False, 'Default returned dataframe is empty'
+
+    # Test defaults returns expected dataframe components
+    assert (ccm.total_cumulative_vaccine_completion().columns == [
+        'cumulative_cvaccine',
+        'cvaccine',
+        'date_vaccine_completed',
+        'province'
+        ]).all(), 'Default returned dataframe has incorrect column names'
