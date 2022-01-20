@@ -56,3 +56,7 @@ def test_total_cumulative_vaccine_completion():
     # Test correct data size is returned with no date specified
     df = ccm.total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30')
     assert df.shape == (200, 4), 'Incorrect shape of dataframe returned when date is not specified' 
+
+    # Test correct data size is returned with date specified
+    df = total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')
+    assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified' 
