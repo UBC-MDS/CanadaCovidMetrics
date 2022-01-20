@@ -19,6 +19,24 @@ def test_date_format_check():
     with pytest.raises(ValueError):
         ccm.date_format_check(not_a_date)
 
+def test_loc_format_check():
+    """Test loc_format_check"""
+
+    # initialise values to test
+    loc_correct_format = "canada"
+    loc_wrong_format = "PEI"
+    not_a_loc = "ABC1234!"
+
+    # expect None returned for proper loc format
+    assert ccm.loc_format_check(loc_correct_format) == None
+    
+    # expect ValueError raised for incorrect loc format
+    with pytest.raises(ValueError):
+        ccm.loc_format_check(loc_wrong_format)
+    
+    with pytest.raises(ValueError):
+        ccm.loc_format_check(not_a_loc)
+
 
 def test_total_cumulative_deaths():
     """Test total_cumulative_deaths"""
@@ -37,4 +55,4 @@ def test_total_cumulative_deaths():
     df = ccm.total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-10-30')
     assert df.shape == (237, 4)
 
-test_date_format_check()
+test_loc_format_check()
