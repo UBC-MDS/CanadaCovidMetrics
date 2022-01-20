@@ -23,7 +23,7 @@ def test_total_cumulative_deaths():
 
 
 def test_total_cumulative_vaccine_completion():
-    """Test total_cumulative_vaccine_completion"""
+    """Test total_cumulative_vaccine_completion. Branches inlcude date and no date specified"""
 
     # Test defaults return a dataframe object
     assert isinstance(ccm.total_cumulative_vaccine_completion(), pd.DataFrame), 'Pandas DataFrame Not Returned'
