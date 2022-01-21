@@ -47,7 +47,7 @@ def test_total_cumulative_vaccine_completion():
     assert df['province'][0] == 'Quebec', 'Incorrect province returned when date is specified' 
 
     # Test correct data is returned when date is not specified
-    df = total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30')
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30')
     assert df['cumulative_cvaccine'].sum() == 151110816, 'Incorrect cumulative_cvaccine returned when date is not specified' 
     assert df['cvaccine'].sum() == 4773367, 'Incorrect cvaccine returned when date is not specified' 
     assert df['date_vaccine_completed'][0] == '12-01-2021', 'Incorrect date_vaccine_completed returned when date is not specified' 
@@ -58,5 +58,5 @@ def test_total_cumulative_vaccine_completion():
     assert df.shape == (200, 4), 'Incorrect shape of dataframe returned when date is not specified' 
 
     # Test correct data size is returned with date specified
-    df = total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')
     assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified' 
