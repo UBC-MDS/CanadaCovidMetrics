@@ -11,7 +11,7 @@ def test_date_format_check():
     not_a_date = "121242539"
 
     # expect None returned for proper date format
-    assert ccm.date_format_check(date_correct_format) == None
+    assert ccm.date_format_check(date_correct_format) == None, "Expect None returned for proper date formate failed"
     
     # expect ValueError raised for incorrect date format
     with pytest.raises(ValueError):
@@ -29,7 +29,7 @@ def test_loc_format_check():
     not_a_loc = "ABC1234!"
 
     # expect None returned for proper loc format
-    assert ccm.loc_format_check(loc_correct_format) == None
+    assert ccm.loc_format_check(loc_correct_format) == None, "Expect None returned for proper loc formate failed"
     
     # expect ValueError raised for incorrect loc format
     with pytest.raises(ValueError):
@@ -42,10 +42,10 @@ def test_total_cumulative_recovered_cases():
     """Test loc_format_check"""
 
     # check default call returns a dataframe object
-    assert isinstance(ccm.total_cumulative_recovered_cases(), pd.DataFrame)
+    assert isinstance(ccm.total_cumulative_recovered_cases(), pd.DataFrame), "Expect dataframe object return failed"
 
     # check default call returns non-empty dataframe object
-    assert ccm.total_cumulative_recovered_cases().empty == False
+    assert ccm.total_cumulative_recovered_cases().empty == False, "Expect non-empty dataframe return failed"
     
     # check default call returns expected dataframe components
     assert (ccm.total_cumulative_recovered_cases().columns == [
@@ -53,7 +53,7 @@ def test_total_cumulative_recovered_cases():
         'date_recovered',
         'province',
         'recovered'
-        ]).all()
+        ]).all(), "Expect correct dataframe columns return failed"
 
 
 def test_total_cumulative_deaths():
