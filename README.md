@@ -21,7 +21,7 @@ There are 4 functions in this package:
 ## Installation
 
 ```bash
-$ pip install canadacovidmetrics
+$ pip install "git+https://github.com/UBC-MDS/canadacovidmetrics"
 ```
 
 ## Usage
