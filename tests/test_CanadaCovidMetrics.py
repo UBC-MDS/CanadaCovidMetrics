@@ -82,13 +82,6 @@ def test_total_cummulative_cases():
     assert df['cumulative_cases'].sum() == 56, 'Incorrect data obtained!'
     assert df['cases'].sum() == 17, 'Incorrect data obtained!'
     
-    #Test correct data is returned when date is not specified
-    data = [[0, 0 ,'25-01-2020',"Alberta"]]
-    df = pd.DataFrame(data, columns = ["cases", "cumulative_cases", "date_report", "province"])
-    assert df['cumulative_cases'].sum() == 0, 'Incorrect data obtained!'
-    assert df['cases'].sum() == 0, 'Incorrect data obtained!'
-    
-    
     #Test to check if every province data is returned for a given day when loc = "prov"
     
     df = ccm.total_cumulative_cases(loc='prov', date='15-03-2020', after='2020-01-01', before=today)
