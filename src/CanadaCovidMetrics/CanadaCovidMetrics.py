@@ -7,16 +7,13 @@ today = '{}'.format(dt.date.today())
 
 def date_format_check(datestr):
     """Check date format is compatible with API call
-
     Parameters
     ----------
     datestr : str
         Date string to be checked
-
     Returns
     -------
     None
-
     Examples
     --------
     >>> date_format_check('2021-03-30')
@@ -41,11 +38,9 @@ def loc_format_check(locstr):
     ----------
     locstr : str
         Location string to be checked
-
     Returns
     -------
     None
-
     Examples
     --------
     >>> loc_format_check('2021-03-30')
@@ -59,7 +54,6 @@ def loc_format_check(locstr):
 def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative cases with ability to specify \
         location and date range of returned data.
-
     Parameters
     ----------
     loc : str
@@ -73,19 +67,30 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-
     Returns
     -------
     dict
         JSON response from queried api.
-
     Examples
     --------
     >>> total_cumulative_cases(loc='BC')
     """
+     
+    loc_format_check(loc)  # check location is valid
 
-    return
+    if date is not None:
+        date_format_check(date)  # check date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cases&loc={}&date={}'.format(loc, date) 
+    else:
+        date_format_check(before)  # check before-date is valid
+        date_format_check(after)  # check after-date is valid
+        url = 'https://api.opencovid.ca/timeseries?stat=cases&loc={}&after={}&before={}'.format(loc, after, before)
+    
+    r = requests.get(url = url)
+    json_body = r.json()['cases']
+    df = pd.DataFrame.from_dict(json_body)
 
+    return df
 
 def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative deaths with ability to specify \
@@ -132,7 +137,6 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
 def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', before=today):
     """Query total cumulative recovered cases with ability \
         to specify location and date range of returned data.
-
     Parameters
     ----------
     loc : str
@@ -146,12 +150,10 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-
     Returns
     -------
     df
         Pandas dataframe containing content of API response.
-
     Examples
     --------
     >>> total_cumulative_recovered_cases(loc='BC')
