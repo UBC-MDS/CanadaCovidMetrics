@@ -99,7 +99,7 @@ def test_total_cummulative_cases():
     df = ccm.total_cumulative_cases(loc='AB', date='15-03-2020', after='2020-01-01', before=today)
     assert (df.columns == ['cases', 'cumulative_cases', 'date_report', 'province']).all(),  'Incorrect data obtained!'
 
-
+    
 def test_total_cumulative_vaccine_completion():
     """Test total_cumulative_vaccine_completion. Branches inlcude date and no date specified"""
 
@@ -138,3 +138,4 @@ def test_total_cumulative_vaccine_completion():
     # Test correct data size is returned with date specified
     df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')
     assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified' 
+
