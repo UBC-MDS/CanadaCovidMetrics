@@ -55,6 +55,10 @@ def test_total_cumulative_recovered_cases():
         'recovered'
         ]).all(), "Expect correct dataframe columns return failed"
 
+    # Test correct datetime type returned if specified
+    df = ccm.total_cumulative_recovered_cases(loc='QC', date='2021-05-01', datetime_type = True)
+    assert type(df['date_recovered'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
+
 
 def test_total_cumulative_deaths():
     """Test total_cumulative_deaths"""
@@ -72,6 +76,10 @@ def test_total_cumulative_deaths():
     df = ccm.total_cumulative_deaths(loc='BC', date=None, after='2020-01-01', before = '2020-10-30')
     assert df.shape == (237, 4)
 
+    # Test correct datetime type returned if specified
+    df = ccm.total_cumulative_deaths(loc='QC', date='2021-05-01', datetime_type = True)
+    assert type(df['date_death_report'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
+
 
 def test_total_cummulative_cases():
     """ Test total_cummulative_cases"""
@@ -87,14 +95,16 @@ def test_total_cummulative_cases():
     assert df['cases'].sum() == 0, 'Incorrect data obtained!'
     
     #Test to check if every province data is returned for a given day when loc = "prov"
-    
     df = ccm.total_cumulative_cases(loc='prov', date='15-03-2020')
     assert df["province"].nunique() == 14, 'Incorrect data obtained!'
     
     # Test to check for the correct columns in the dataframe returned
-    
     df = ccm.total_cumulative_cases(loc='AB', date='15-03-2020')
     assert (df.columns == ['cases', 'cumulative_cases', 'date_report', 'province']).all(),  'Incorrect data obtained!'
+
+    # Test correct datetime type returned if specified
+    df = ccm.total_cumulative_cases(loc='QC', date='2021-05-01', datetime_type = True)
+    assert type(df['date_report'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
 
     
 def test_total_cumulative_vaccine_completion():
@@ -134,5 +144,12 @@ def test_total_cumulative_vaccine_completion():
 
     # Test correct data size is returned with date specified
     df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')
-    assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified' 
+    assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified'
+
+    # Test correct datetime type returned if specified
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01', datetime_type = True)
+    assert type(df['date_vaccine_completed'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
+
+    
+
 
