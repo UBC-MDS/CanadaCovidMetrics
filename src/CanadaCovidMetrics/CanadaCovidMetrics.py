@@ -51,7 +51,7 @@ def loc_format_check(locstr):
 
     return
 
-def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today, datetime_type = False):
+def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today, datetype = False):
     """Query total cumulative cases with ability to specify \
         location and date range of returned data.
     Parameters
@@ -67,7 +67,7 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-    datetime_type : boolean
+    datetype : boolean
         Return date column as a string (False) or as a datetime (True).
     Returns
     -------
@@ -92,13 +92,13 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
     json_body = r.json()['cases']
     df = pd.DataFrame.from_dict(json_body)
 
-    if datetime_type == True:
+    if datetype == True:
         df['date_report']= df['date_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
     
     return df
 
 
-def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today, datetime_type = False):
+def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today, datetype = False):
     """Query total cumulative deaths with ability to specify \
         location and date range of returned data.
     Parameters
@@ -114,7 +114,7 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-    datetime_type : boolean
+    datetype : boolean
         Return date column as a string (False) or as a datetime (True).
     Returns
     -------
@@ -139,13 +139,13 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
     json_body = r.json()['mortality']
     df = pd.DataFrame.from_dict(json_body)
 
-    if datetime_type == True:   
+    if datetype == True:   
         df['date_death_report']= df['date_death_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
 
-def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', before=today, datetime_type = False):
+def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', before=today, datetype = False):
     """Query total cumulative recovered cases with ability \
         to specify location and date range of returned data.
     Parameters
@@ -161,7 +161,7 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
         Return data on and after the specified date YYYY-MM-DD.
     before : str
         Return data on and before the specified date YYYY-MM-DD.
-    datetime_type : boolean
+    datetype : boolean
         Return date column as a string (False) or as a datetime (True).
     Returns
     -------
@@ -186,13 +186,13 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
     json_body = r.json()['recovered']
     df = pd.DataFrame.from_dict(json_body)
 
-    if datetime_type == True:
+    if datetype == True:
         df['date_recovered']= df['date_recovered'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
 
-def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01', before=today, datetime_type = False):
+def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01', before=today, datetype=False):
     """Query total cumulative vaccine completion with ability \
         to specify location and date range of returned data.
 
@@ -211,7 +211,7 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     before : str
         Return data on and before the specified date YYYY-MM-DD.
         Default is the date of query.
-    datetime_type : boolean
+    datetype : boolean
         Return date column as a string (False) or as a datetime (True).
     Returns
     -------
@@ -236,7 +236,7 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     json_body = r.json()['cvaccine']
     df = pd.DataFrame.from_dict(json_body)
 
-    if datetime_type == True:
+    if datetype == True:
         df['date_vaccine_completed']= df['date_vaccine_completed'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df

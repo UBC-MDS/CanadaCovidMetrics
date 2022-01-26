@@ -56,7 +56,7 @@ def test_total_cumulative_recovered_cases():
         ]).all(), "Expect correct dataframe columns return failed"
 
     # Test correct datetime type returned if specified
-    df = ccm.total_cumulative_recovered_cases(loc='QC', date='2021-05-01', datetime_type = True)
+    df = ccm.total_cumulative_recovered_cases(loc='QC', date='2021-05-01', datetype = True)
     assert type(df['date_recovered'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
 
 
@@ -77,7 +77,7 @@ def test_total_cumulative_deaths():
     assert df.shape == (237, 4)
 
     # Test correct datetime type returned if specified
-    df = ccm.total_cumulative_deaths(loc='QC', date='2021-05-01', datetime_type = True)
+    df = ccm.total_cumulative_deaths(loc='QC', date='2021-05-01', datetype = True)
     assert type(df['date_death_report'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
 
 
@@ -103,7 +103,7 @@ def test_total_cummulative_cases():
     assert (df.columns == ['cases', 'cumulative_cases', 'date_report', 'province']).all(),  'Incorrect data obtained!'
 
     # Test correct datetime type returned if specified
-    df = ccm.total_cumulative_cases(loc='QC', date='2021-05-01', datetime_type = True)
+    df = ccm.total_cumulative_cases(loc='QC', date='2021-05-01', datetype = True)
     assert type(df['date_report'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
 
     
@@ -147,7 +147,7 @@ def test_total_cumulative_vaccine_completion():
     assert df.shape == (1, 4), 'Incorrect shape of dataframe returned when date is specified'
 
     # Test correct datetime type returned if specified
-    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01', datetime_type = True)
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01', datetype = True)
     assert type(df['date_vaccine_completed'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
 
     
