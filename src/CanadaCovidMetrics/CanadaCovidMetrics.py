@@ -93,7 +93,7 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
     df = pd.DataFrame.from_dict(json_body)
 
     if datetime_type == True:
-        df['date_report']= df['date_report'].apply(lambda x: dt.strptime(x, '%d-%m-%Y'))
+        df['date_report']= df['date_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
     
     return df
 
@@ -140,7 +140,7 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
     df = pd.DataFrame.from_dict(json_body)
 
     if datetime_type == True:   
-        df['date_death_report']= df['date_death_report'].apply(lambda x: dt.strptime(x, '%d-%m-%Y'))
+        df['date_death_report']= df['date_death_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
@@ -187,7 +187,7 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
     df = pd.DataFrame.from_dict(json_body)
 
     if datetime_type == True:
-        df['date_recovered']= df['date_recovered'].apply(lambda x: dt.strptime(x, '%d-%m-%Y'))
+        df['date_recovered']= df['date_recovered'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
@@ -222,11 +222,6 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     >>> total_cumulative_vaccine_completion(loc='BC')
     """
 
-    import datetime as dt
-    from multiprocessing.sharedctypes import Value
-    import requests
-    import pandas as pd
-
     loc_format_check(loc)  # check location is valid
 
     if date is not None:
@@ -242,6 +237,6 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     df = pd.DataFrame.from_dict(json_body)
 
     if datetime_type == True:
-        df['date_vaccine_completed']= df['date_vaccine_completed'].apply(lambda x: dt.strptime(x, '%d-%m-%Y'))
+        df['date_vaccine_completed']= df['date_vaccine_completed'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
