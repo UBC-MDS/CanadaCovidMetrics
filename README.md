@@ -26,7 +26,7 @@ $ pip install "git+https://github.com/UBC-MDS/canadacovidmetrics"
 
 ## Usage & Examples
 
-### Total number deaths over past week by province
+### Total number of deaths over past week by province
 
 ```python
 import CanadaCovidMetrics.CanadaCovidMetrics as ccm
