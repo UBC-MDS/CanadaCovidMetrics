@@ -24,9 +24,34 @@ There are 4 functions in this package:
 $ pip install "git+https://github.com/UBC-MDS/canadacovidmetrics"
 ```
 
-## Usage
+## Usage & Examples
 
-- TODO
+### Total number deaths over past week by province
+
+```python
+import CanadaCovidMetrics.CanadaCovidMetrics as ccm
+import datetime as dt
+deaths_last_week = ccm.total_cumulative_deaths(after=str(dt.date.today() - dt.timedelta(days=7)))
+deaths_last_week.groupby('province').sum('deaths').plot.barh(y='deaths', title='Deaths by province in past week');
+```
+
+### National vaccination completion in 2021
+
+```python
+import CanadaCovidMetrics.CanadaCovidMetrics as ccm
+import datetime as dt
+vaccines_2021 = ccm.total_cumulative_vaccine_completion(loc='canada', after='2021-01-01', before='2021-12-31')
+vaccines_2021.plot('date_vaccine_completed', 'cumulative_cvaccine', title='Cumulative national vaccinations');
+```
+
+### Daily new case count by province
+
+```python
+import CanadaCovidMetrics.CanadaCovidMetrics as ccm
+import datetime as dt
+cases_data = ccm.total_cumulative_cases().set_index('date_report')
+cases_data.groupby('province')['cases'].plot(legend=True, figsize=(10,6), title='Number of reported cases by day by province');
+```
 
 ## Python ecosystem
 
