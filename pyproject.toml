@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "CanadaCovidMetrics"
+name = "canadacovidmetrics"
 version = "0.1.4"
 description = "This package enables obtain key metrics regarding covid situation in Canada"
 authors = ["Valli A", "Luke Collins", "Brandon Lam", "Adam Morphy"]
