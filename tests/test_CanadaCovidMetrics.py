@@ -1,4 +1,4 @@
-import CanadaCovidMetrics.CanadaCovidMetrics as ccm
+from canadacovidmetrics import CanadaCovidMetrics as ccm
 import pytest
 import pandas as pd
 
@@ -125,14 +125,15 @@ def test_total_cumulative_vaccine_completion():
         ]).all(), 'Default returned dataframe has incorrect column names'
 
     # Test correct data is returned when date is specified
-    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01')  
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01', datetype=False)  
     assert df['cumulative_cvaccine'].sum() == 97108, 'Incorrect cumulative_cvaccine returned when date is specified' 
     assert df['cvaccine'].sum() == 11250, 'Incorrect cvaccine returned when date is specified' 
+    print(df['date_vaccine_completed'][0])
     assert df['date_vaccine_completed'][0] == '01-05-2021', 'Incorrect date_vaccine_completed returned when data is specified' 
     assert df['province'][0] == 'Quebec', 'Incorrect province returned when date is specified' 
 
     # Test correct data is returned when date is not specified
-    df = ccm.total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30')
+    df = ccm.total_cumulative_vaccine_completion(loc='QC', date=None, after='2021-01-01', before = '2021-07-30', datetype=False)
     assert df['cumulative_cvaccine'].sum() == 151110816, 'Incorrect cumulative_cvaccine returned when date is not specified' 
     assert df['cvaccine'].sum() == 4773367, 'Incorrect cvaccine returned when date is not specified' 
     assert df['date_vaccine_completed'][0] == '12-01-2021', 'Incorrect date_vaccine_completed returned when date is not specified' 
@@ -149,7 +150,3 @@ def test_total_cumulative_vaccine_completion():
     # Test correct datetime type returned if specified
     df = ccm.total_cumulative_vaccine_completion(loc='QC', date='2021-05-01', datetype = True)
     assert type(df['date_vaccine_completed'][0]) == pd.Timestamp, 'Incorrect datetype returned when datetype is specified true'
-
-    
-
-
