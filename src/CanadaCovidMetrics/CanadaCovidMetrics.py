@@ -51,7 +51,7 @@ def loc_format_check(locstr):
 
     return
 
-def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
+def get_cases(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
     """Query total cumulative cases with ability to specify \
         location and date range of returned data.
     Parameters
@@ -76,7 +76,7 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
         JSON response from queried api.
     Examples
     --------
-    >>> total_cumulative_cases(loc='BC')
+    >>> get_cases(loc='BC')
     """
      
     loc_format_check(loc)  # check location is valid
@@ -91,15 +91,15 @@ def total_cumulative_cases(loc='prov', date=None, after='2020-01-01', before=tod
     
     r = requests.get(url = url)
     json_body = r.json()['cases']
-    df = pd.DataFrame.from_dict(json_body)
+    df = pd.DataFrame.from_dict(json_body).rename(columns={'date_report': 'date'})
 
     if datetype:
-        df['date_report']= df['date_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
+        df['date']= df['date'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
     
     return df
 
 
-def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
+def get_deaths(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
     """Query total cumulative deaths with ability to specify \
         location and date range of returned data.
     Parameters
@@ -124,7 +124,7 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
         Pandas dataframe containing content of API response.
     Examples
     --------
-    >>> total_cumulative_deaths(loc='BC')
+    >>> get_deaths(loc='BC')
     """  
 
     loc_format_check(loc)  # check location is valid
@@ -139,15 +139,15 @@ def total_cumulative_deaths(loc='prov', date=None, after='2020-01-01', before=to
     
     r = requests.get(url = url)
     json_body = r.json()['mortality']
-    df = pd.DataFrame.from_dict(json_body)
+    df = pd.DataFrame.from_dict(json_body).rename(columns={'date_death_report': 'date'})
 
     if datetype:   
-        df['date_death_report']= df['date_death_report'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
+        df['date']= df['date'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
 
-def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
+def get_recoveries(loc='prov', date=None, after='2020-01-01', before=today, datetype=True):
     """Query total cumulative recovered cases with ability \
         to specify location and date range of returned data.
     Parameters
@@ -172,7 +172,7 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
         Pandas dataframe containing content of API response.
     Examples
     --------
-    >>> total_cumulative_recovered_cases(loc='BC')
+    >>> get_recoveries(loc='BC')
     """  
     
     loc_format_check(loc)  # check location is valid
@@ -187,15 +187,15 @@ def total_cumulative_recovered_cases(loc='prov', date=None, after='2020-01-01', 
     
     r = requests.get(url = url)
     json_body = r.json()['recovered']
-    df = pd.DataFrame.from_dict(json_body)
+    df = pd.DataFrame.from_dict(json_body).rename(columns={'date_recovered': 'date'})
 
     if datetype:
-        df['date_recovered']= df['date_recovered'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
+        df['date']= df['date'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
 
 
-def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01', before=today, datetype=True):
+def get_vaccinations(loc='prov', date=None, after='2021-01-01', before=today, datetype=True):
     """Query total cumulative vaccine completion with ability \
         to specify location and date range of returned data.
 
@@ -223,7 +223,7 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
         Pandas dataframe containing content of API response.
     Examples
     --------
-    >>> total_cumulative_vaccine_completion(loc='BC')
+    >>> get_vaccinations(loc='BC')
     """
 
     loc_format_check(loc)  # check location is valid
@@ -238,9 +238,9 @@ def total_cumulative_vaccine_completion(loc='prov', date=None, after='2021-01-01
     
     r = requests.get(url = url)
     json_body = r.json()['cvaccine']
-    df = pd.DataFrame.from_dict(json_body)
+    df = pd.DataFrame.from_dict(json_body).rename(columns={'date_vaccine_completed': 'date'})
 
     if datetype:
-        df['date_vaccine_completed']= df['date_vaccine_completed'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
+        df['date']= df['date'].apply(lambda x: dt.datetime.strptime(x, '%d-%m-%Y'))
 
     return df
