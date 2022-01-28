@@ -1,3 +1,3 @@
 # read version from installed package
 from importlib.metadata import version
-__version__ = version("CanadaCovidMetrics")
+__version__ = version("canadacovidmetrics")

@@ -44,10 +44,10 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `CanadaCovidMetrics` for local development.
+Ready to contribute? Here's how to set up `canadacovidmetrics` for local development.
 
-1. Download a copy of `CanadaCovidMetrics` locally.
-2. Install `CanadaCovidMetrics` using `poetry`:
+1. Download a copy of `canadacovidmetrics` locally.
+2. Install `canadacovidmetrics` using `poetry`:
 
     ```console
     $ poetry install
@@ -73,5 +73,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `CanadaCovidMetrics` project is released with a 
+Please note that the `canadacovidmetrics` project is released with a 
 [Contributor Code of Conduct](CONDUCT.md). By contributing to this project you agree to abide by its terms.

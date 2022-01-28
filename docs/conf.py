@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"CanadaCovidMetrics"
+project = u"canadacovidmetrics"
 copyright = u"2022, valli"
 author = u"valli"
 
