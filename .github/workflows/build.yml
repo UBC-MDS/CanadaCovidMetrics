@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     # Step 1. Set up operating system
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     # Step 2. Set up Python 3.9
     - uses: actions/setup-python@v2
@@ -19,17 +19,17 @@ jobs:
     - uses: actions/checkout@v2
     # Step 4. Install poetry
     - uses: snok/install-poetry@v1
-    # Step 5. Install our package
+    # Step 5. Install our canadacovidmetrics package
     - name: Install package
       run: poetry install
-    # Step 6. Run tests for package
+    # Step 6. Run tests for canadacovidmetrics
     - name: Test with pytest
-      run: poetry run pytest tests/ --cov=features_creator --cov-report=xml
+      run: poetry run pytest tests/ --cov=canadacovidmetrics --cov-report=xml
     # Step 7. Use Codecov to track coverage
     - uses: codecov/codecov-action@v2
       with:
         files: ./coverage.xml   # coverage report
-        fail_ci_if_error: true  # terminate workflow if there's an error
+        fail_ci_if_error: true  # terminate workflow if an error occurs
     # Step 8. Build documentation
     - name: Build documentation
       run: poetry run make html --directory docs/
