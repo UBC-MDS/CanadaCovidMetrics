@@ -1,4 +1,4 @@
-from canadacovidmetrics import CanadaCovidMetrics as ccm
+from canadacovidmetrics import canadacovidmetrics as ccm
 import pytest
 import pandas as pd
 
