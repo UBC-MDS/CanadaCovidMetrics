@@ -60,6 +60,10 @@ There are several packages for easy access to COVID-19 key metrics or data using
 
 To our knowledge, there is no similar package using [OpenCovid API](https://opencovid.ca/api/) in the Python ecosystem.
 
+## Documentation
+
+Documentation canadacovidmetrics can be found at [Read the Docs](https://canadacovidmetrics.readthedocs.io/)
+
 ## Contributors
 
 -   Adam Morphy (@adammorphy)
