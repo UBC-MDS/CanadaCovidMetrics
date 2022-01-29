@@ -19,6 +19,7 @@ pytest-cov = "^3.0.0"
 sphinx-autoapi = "^1.8.4"
 myst-nb = "^0.13.1"
 sphinx-rtd-theme = "^1.0.0"
+codecov = "^2.1.12"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
