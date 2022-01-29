@@ -1,3 +1,7 @@
+[![codecov](https://codecov.io/gh/UBC-MDS/canadacovidmetrics/branch/main/graph/badge.svg?token=pqqLGsfiXD)](https://codecov.io/gh/UBC-MDS/canadacovidmetrics)
+[![ci-cd](https://github.com/UBC-MDS/canadacovidmetrics/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/canadacovidmetrics/actions/workflows/build.yml)
+[![Documentation Status](https://readthedocs.org/projects/canada-covid-metrics/badge/?version=latest)](https://canada-covid-metrics.readthedocs.io/en/latest/?badge=latest)
+
 # canadacovidmetrics
 
 This is a Python package that provides key metrics regarding COVID-19 situation in Canada across provinces using the [OpenCovid API](https://opencovid.ca/api/).
