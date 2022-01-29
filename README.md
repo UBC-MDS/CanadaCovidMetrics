@@ -62,7 +62,7 @@ To our knowledge, there is no similar package using [OpenCovid API](https://open
 
 ## Documentation
 
-Documentation canadacovidmetrics can be found at [Read the Docs](https://canadacovidmetrics.readthedocs.io/)
+Documentation canadacovidmetrics can be found at [Read the Docs](https://canada-covid-metrics.readthedocs.io/en/latest/)
 
 ## Contributors
 
