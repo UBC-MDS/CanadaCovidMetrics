@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2022-01-29)
+
+
 ## v0.2.0 (2022-01-28)
 ### Feature
 * Update function names ([`fe4f0ca`](https://github.com/UBC-MDS/canadacovidmetrics/commit/fe4f0cab50b8e690643e77f1a7ba1c904f0cd2e6))
