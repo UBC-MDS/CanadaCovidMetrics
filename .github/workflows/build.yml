@@ -26,7 +26,6 @@ jobs:
     - name: Test with pytest
       run: poetry run pytest tests/ --cov=canadacovidmetrics --cov-report=xml
     # Step 7. Use Codecov to track coverage
-    - name: Upload coverage to Codecov
     - uses: codecov/codecov-action@v2
       with:
         files: ./coverage.xml   # coverage report
