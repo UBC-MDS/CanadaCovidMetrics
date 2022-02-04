@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.4 (2022-02-04)
+### Fix
+* Update conf file to resolve examples module import issue. ([`4b79b4e`](https://github.com/UBC-MDS/canadacovidmetrics/commit/4b79b4ee8bff81d351e01a7ed50d5cb03bb27939))
+
 ## v0.2.3 (2022-01-29)
 
 

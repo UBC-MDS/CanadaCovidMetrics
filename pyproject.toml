@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "canadacovidmetrics"
-version = "0.2.3"
+version = "0.2.4"
 description = "This package enables obtain key metrics regarding covid situation in Canada"
 authors = ["Valli A", "Luke Collins", "Brandon Lam", "Adam Morphy"]
 license = "MIT"
