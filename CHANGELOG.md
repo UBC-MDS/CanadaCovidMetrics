@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.5 (2022-02-04)
+### Documentation
+* Updated to Creative Commons License ([`1f8138a`](https://github.com/UBC-MDS/canadacovidmetrics/commit/1f8138a8253bd09a1b6c82c87c042c5d0a3c9595))
+
 ## v0.2.4 (2022-02-04)
 ### Fix
 * Update conf file to resolve examples module import issue. ([`4b79b4e`](https://github.com/UBC-MDS/canadacovidmetrics/commit/4b79b4ee8bff81d351e01a7ed50d5cb03bb27939))
