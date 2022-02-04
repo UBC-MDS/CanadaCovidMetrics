@@ -79,7 +79,13 @@ We welcome and recognize all contributions. Please find the guide for contributi
 
 ## License
 
-`canadacovidmetrics` was created by the Contributors. It is licensed under the terms of the MIT license.
+`canadacovidmetrics` was created by the Contributors. The dependant API from the COVID-19 Canada Open Data Working Group dataset project has adopted the [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) license, which allows freedom of two primary contributions:
+
+**Sharing** — copy and redistribute the material in any medium or format
+**Adapting** — remix, transform, and build upon the material
+for any purpose, even commercially. 
+
+As contributors to this community, our package has adopted the same creative commons license, in order to enable anyone to share or adapt the Canada Covid Metrics package in R or Python subject to the license.
 
 ## Credits
 
